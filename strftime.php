@@ -5,7 +5,7 @@ $now = new DateTime();
 function strftimeA($pattern, $timestamp = null, $timezone="Europe/Berlin")
 {
   $formatter = new IntlDateFormatter(null, IntlDateFormatter::LONG, IntlDateFormatter::LONG, $timezone);
-  $date_time = new DateTime(timezone: new DateTimeZone("Europe/Berlin"));
+  $date_time = new DateTime(timezone: new DateTimeZone($timezone));
   try {
     if ($timestamp !== null && (is_long($timestamp) || is_int($timezone))) {
       $date_time->setTimestamp($timestamp);
