@@ -7,7 +7,7 @@ function strftimeA($pattern, $timestamp = null, $timezone="Europe/Berlin")
   $formatter = new IntlDateFormatter(null, IntlDateFormatter::LONG, IntlDateFormatter::LONG, $timezone);
   $date_time = new DateTime(timezone: new DateTimeZone("Europe/Berlin"));
   try {
-    if ($timestamp !== null && (is_long($timestamp) || is_int($timestamp))) {
+    if ($timestamp !== null && (is_long($timestamp) || is_int($timezone))) {
       $date_time->setTimestamp($timestamp);
     }
 
@@ -21,12 +21,9 @@ function strftimeA($pattern, $timestamp = null, $timezone="Europe/Berlin")
       '%M' => 'mm',         // minute in hour
       '%S' => 'ss',         // second in minute
       '%F' => 'y-MM-dd',    // Same as "%Y-%m-%d" Example: 2009-02-05 für den 5. Februar 2009
-      '%T' => 'HH:mm:ss'    // Same as "%H:%M:%S" Example: 21:34:17 für 09:34:17 PM
+      '%T' => 'HH:mm:ss',   // Same as "%H:%M:%S" Example: 21:34:17 für 09:34:17 PM
+      '%s' => (string) $formatter->parse($formatter->format($date_time))
     ];
-
-    if($pattern === '%s') {
-      return (string) $formatter->parse($formatter->format($date_time));
-    }
 
     //  $formatter->setPattern($map_pattern[$pattern]);
     $formatter->setPattern(str_replace(array_keys($map_pattern), array_values($map_pattern), $pattern));
