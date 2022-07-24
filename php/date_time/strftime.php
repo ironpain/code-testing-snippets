@@ -2,6 +2,14 @@
 
 $now = new DateTime();
 
+/**
+ * strftimeA simple replacement for strftime
+ *
+ * @param string $pattern
+ * @param int $timestamp
+ * @param string $timezone
+ * @return string|false
+ */
 function strftimeA($pattern, $timestamp = null, $timezone="Europe/Berlin")
 {
   $formatter = new IntlDateFormatter(null, IntlDateFormatter::LONG, IntlDateFormatter::LONG, $timezone);
@@ -33,10 +41,3 @@ function strftimeA($pattern, $timestamp = null, $timezone="Europe/Berlin")
     unset($formatter, $date_time);
   }
 }
-
-echo strftimeA("%Y", $now->getTimestamp()) . PHP_EOL;
-
-$tmp = "%m.%Y";
-echo strftimeA($tmp, $now->getTimestamp()) . PHP_EOL;
-
-echo strftimeA('%s') . ' --- ' . time();
