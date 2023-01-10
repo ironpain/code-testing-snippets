@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "": "./php"
+    },
+    "classmap": [
+      "./php/http_helper.php"
+    ],
+    "files": [
+      "./php/date_time/strftime.php"
+    ]
+  }
+}
