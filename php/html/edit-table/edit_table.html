@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./table.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <table class="scroll-table edit-table">
+    <thead>
+      <th>c1</th>
+      <th>c2</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="edit-table">
+    <thead>
+      <th>c1</th>
+      <th>c2</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+  <script type="module">
+
+    function save(ele, controller) {
+      console.log("save")
+      let cell = ele.closest("td");
+      cell.innerHTML = "";
+      cell.innerText = ele.value;
+
+      // ele.removeEventListener('keyup', _input_save_keyup);
+      console.log("CELL: ", cell.innerHTML)
+      // controller.abort();
+      // cell.innerHTML = ele.value;
+    }
+
+    /**
+     *
+     * @param {HTMLTableCellElement} ele
+     */
+    function addInput(ele) {
+      const controller = new AbortController();
+      let value = ele.innerText;
+      let input;
+
+      ele.innerText = "";
+      ele.innerHTML = `<input type="text" value="${value}" maxlength="5">`;
+
+      input = ele.querySelector('input');
+
+      input.addEventListener("blur", function _input_save_blur(ev) {
+        console.log("blur:", ev)
+        save(ev.target, controller);
+      }, { signal: controller.signal })
+
+      input.addEventListener("keyup", function _input_save_keyup(ev) {
+        if (ev.keyCode == 13) {
+          input.blur();
+          return;
+        }
+
+        if (ev.key == "Escape") {
+          ele.innerHTML = "";
+          ele.innerText = value;
+          return;
+        }
+
+      }, { signal: controller.signal })
+
+
+
+
+      input.focus();
+      input.select();
+    }
+
+    document.addEventListener("dblclick", function (/** @type {Event} */ ev) {
+      console.log(ev);
+      //ev.preventDefault();
+      ev.stopPropagation();
+      switch (true) {
+        case (ev.target.nodeName == "TD" && ev.target.closest("table").classList.contains("edit-table")):
+          console.log("dl");
+          addInput(ev.target);
+          break;
+        default:
+          console.log("default");
+          break;
+      }
+
+    });
+
+  </script>
+</body>
+
+</html>

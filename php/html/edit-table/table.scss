@@ -1,0 +1,62 @@
+/* #region Color */
+$table-even-color: #f2f2f2;
+$table-odd-color: bisque;
+$table-color: red;
+/* #endregion Color */
+
+/* #region fontstack */
+$fontstack-deault:  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+/* #endregion fontstack */
+
+body {
+
+  font-family: $fontstack-deault;
+  font-weight: 300;
+}
+
+.scroll-table {
+  color: $table-color;
+  border-spacing: 0px;
+
+  tbody {
+    display: block;
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden !important;
+  }
+
+  thead, tbody tr, tfoot tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  tbody > tr {
+    &:nth-child(even) {
+      background-color: $table-even-color;
+    }
+
+    &:nth-child(odd) {
+      background-color: $table-odd-color;
+    }
+
+    td {
+      justify-content: center;
+      text-align: center;
+      border: 1px solid black;
+      border-top: none;
+      border-left: none;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.edit-table {
+  input {
+    height: 12px;
+    width: 5ch;
+  }
+}

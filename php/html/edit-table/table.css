@@ -1,0 +1,45 @@
+/* #region Color */
+/* #endregion Color */
+/* #region fontstack */
+/* #endregion fontstack */
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+.scroll-table {
+  color: red;
+  border-spacing: 0px;
+}
+.scroll-table tbody {
+  display: block;
+  max-height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+}
+.scroll-table thead, .scroll-table tbody tr, .scroll-table tfoot tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.scroll-table tbody > tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.scroll-table tbody > tr:nth-child(odd) {
+  background-color: bisque;
+}
+.scroll-table tbody > tr td {
+  justify-content: center;
+  text-align: center;
+  border: 1px solid black;
+  border-top: none;
+  border-left: none;
+}
+.scroll-table tbody > tr td:last-child {
+  border-right: none;
+}
+
+.edit-table input {
+  height: 12px;
+  width: 5ch;
+}
